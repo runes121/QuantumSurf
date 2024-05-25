@@ -4,12 +4,16 @@ from PyQt5.QtWebEngineWidgets import QWebEngineView
 from stylesheets import *
 from incompatible_url_manager import *
 import urllib.parse
+import os
+
+
+current_dir = os.path.dirname(os.path.realpath(__file__))
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.browser = QWebEngineView()
-        self.browser.setUrl(QUrl.fromLocalFile(r"C:\Users\Admin\PycharmProjects\Browser\home.html"))
+        self.browser.setUrl(QUrl.fromLocalFile(os.path.join(current_dir, 'home.html')))
         self.browser.urlChanged.connect(self.update_urlbar)
         self.browser.loadFinished.connect(self.update_title)
         self.setCentralWidget(self.browser)
@@ -74,17 +78,17 @@ class MainWindow(QMainWindow):
 
     def update_urlbar(self, q):
         print(q.toString())
-        if q.toString() != "file:///C:/Users/Admin/PycharmProjects/Browser/home.html":
+        if q.toString() != os.path.join(current_dir, 'home.html'):
             if not q.toString() in get_urls():
                 self.urlbar.setText(q.toString())
                 self.urlbar.setCursorPosition(0)
             else:
-                self.browser.setUrl(QUrl.fromLocalFile(r"C:\Users\Admin\PycharmProjects\Browser\notcompatible.html"))
+                self.browser.setUrl(QUrl.fromLocalFile(os.path.join(current_dir, 'notcompatible.html')))
         else:
             self.urlbar.clear()
 
     def navigate_home(self):
-        self.browser.setUrl(QUrl.fromLocalFile(r"C:\Users\Admin\PycharmProjects\Browser\home.html"))
+        self.browser.setUrl(QUrl.fromLocalFile(os.path.join(current_dir, 'home.html')))
 
     def gotochat(self):
         self.browser.setUrl(QUrl("https://bing.com/chat"))
