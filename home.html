@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            font-family: monospace, Monaco;
+            color: whitesmoke;
+            font-size: xxx-large;
+        }
+        button {
+            color: black
+        }
+        body {
+            background-color: #333333
+        }
+    </style>
+    <script>
+    var funWebsites = [
+    "https://findtheinvisiblecow.com", // A fun game where you locate a hidden cow by sound.
+    "https://www.mapcrunch.com", // Random Google Street View locations to explore.
+    "http://www.theuselessweb.com", // Takes you to a random whimsical website.
+    "https://hackertyper.net", // Type like a hacker from the movies.
+    "http://papertoilet.com", // Virtually unroll a toilet paper roll.
+    "https://pointerpointer.com", // Finds a photo with a pointer pointing to your cursor.
+    "https://www.nytimes.com/games/wordle/index.html", // The popular daily word game.
+    "http://www.staggeringbeauty.com", // Make a virtual worm dance. (Contains flashing images)
+    "https://screamintothevoid.com", // Scream digitally and let it out.
+    "https://duotrigordle.com", // Solve 32 Wordle puzzles at once.
+    "https://archive.org/web", // See how websites looked in the past.
+    "http://www.dontevenreply.com", // Read hilarious real-life email exchanges.
+    "https://www.patatap.com", // Create sounds and animations with your keyboard.
+    "https://29a.ch/sandbox/2011/neonflames", // Draw your own nebula in space.
+    "https://play2048.co", // Addictive game to combine numbers and reach 2048.
+    ];
+
+
+    function chooseRandomSite() {
+        var randomIndex = Math.floor(Math.random() * funWebsites.length);
+        var randomSite = funWebsites[randomIndex];
+        window.location.href = randomSite;
+    }
+    </script>
+    <title>Home.</title>
+    <h1>Welcome home.</h1>
+    <h2>Want to search?</h2>
+    <script>
+        function GoToSite1() {
+            window.location.href = 'https://bing.com/';
+        }
+    </script>
+    <button onclick="GoToSite1()" type="button">Go to Bing.</button>
+    <h3>...or looking for something new?</h3>
+    <button type="button" onclick="chooseRandomSite()">Take me to a random website.</button>
+</head>
+<body>
+
+</body>
+</html>
