@@ -2,6 +2,7 @@ from PyQt5.QtCore import QUrl
 from PyQt5.QtWidgets import QMainWindow, QApplication, QStatusBar, QToolBar, QLineEdit, QAction, QMessageBox
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from stylesheets import *
+from incompatible_url_manager import *
 import urllib.parse
 
 class MainWindow(QMainWindow):
@@ -72,9 +73,13 @@ class MainWindow(QMainWindow):
         self.browser.setUrl(QUrl("https://gmail.com"))
 
     def update_urlbar(self, q):
+        print(q.toString())
         if q.toString() != "file:///C:/Users/Admin/PycharmProjects/Browser/home.html":
-            self.urlbar.setText(q.toString())
-            self.urlbar.setCursorPosition(0)
+            if not q.toString() in get_urls():
+                self.urlbar.setText(q.toString())
+                self.urlbar.setCursorPosition(0)
+            else:
+                self.browser.setUrl(QUrl.fromLocalFile(r"C:\Users\Admin\PycharmProjects\Browser\notcompatible.html"))
         else:
             self.urlbar.clear()
 
